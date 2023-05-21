@@ -47,6 +47,20 @@ services:
       - ./src:/var/www/html
     networks:  
       - laravel
+  
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 8081:80
+    restart: always
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+    networks:
+      - laravel
+    depends_on:
+      - mysql
 
 networks:
   laravel:
